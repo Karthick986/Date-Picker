@@ -1,7 +1,9 @@
 import 'package:date_picker_test/strings/value_strings.dart';
 import 'package:date_picker_test/utitities/colors_utility.dart';
+import 'package:date_picker_test/utitities/global_utility.dart';
 import 'package:date_picker_test/utitities/text_utility.dart';
 import 'package:date_picker_test/widgets/button_widget.dart';
+import 'package:date_picker_test/widgets/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Custom Date Picker',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -35,8 +37,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  withoutPreset(context) {
-    debugPrint("withoutPreset");
+  withoutPreset(context) async {
+    DateTime? newDateTime = await showRoundedDatePicker(
+      context: context,
+      textNegativeButton: "Cancel",
+      textPositiveButton: "Save",
+      height: GlobalUtility.buildHeight(context)*0.4,
+      theme: ThemeData(primarySwatch: Colors.blue),
+        customWeekDays: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
+    );
+    print(newDateTime.toString());
   }
 
   with4Preset(context) {
