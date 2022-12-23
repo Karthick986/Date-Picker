@@ -71,7 +71,7 @@ class FlutterRoundedButtonAction extends StatelessWidget {
   }
 
   List<Widget> _calenderWidget() {
-    return [Icon(Icons.calendar_today_rounded, color: Colors.blueAccent,), Text(DateFormat("dd MMM yyyy").format(currentDate))];
+    return [const Icon(Icons.calendar_today_rounded, color: Colors.blueAccent,), Text(DateFormat("dd MMM yyyy").format(currentDate))];
   }
 
   @override

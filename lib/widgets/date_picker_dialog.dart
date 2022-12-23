@@ -34,9 +34,11 @@ class FlutterRoundedDatePickerDialog extends StatefulWidget {
         this.customWeekDays,
         this.builderDay,
         this.listDateDisabled,
-        this.onTapDay})
+        this.onTapDay, this.with4Presets, this.with6Presets,})
       : super(key: key);
 
+  final bool? with4Presets;
+  final bool? with6Presets;
   final DateTime initialDate;
   final DateTime firstDate;
   final DateTime lastDate;
@@ -124,6 +126,12 @@ class _FlutterRoundedDatePickerDialogState extends State<FlutterRoundedDatePicke
       default:
         break;
     }
+  }
+
+  void dateSelectChanged(DateTime dateTime) {
+    setState(() {
+      _selectedDate = dateTime;
+    });
   }
 
   void _handleModeChanged(DatePickerMode mode) {
@@ -239,11 +247,15 @@ class _FlutterRoundedDatePickerDialogState extends State<FlutterRoundedDatePicke
     }
 
     final Dialog dialog = Dialog(
+      insetPadding: EdgeInsets.all(16),
       child: OrientationBuilder(builder: (BuildContext context, Orientation orientation) {
         final Widget header = FlutterRoundedDatePickerHeader(
             selectedDate: _selectedDate,
             mode: _mode,
+            with6Presets: widget.with6Presets,
+            with4Presets: widget.with4Presets,
             onModeChanged: _handleModeChanged,
+            onDateChanged: dateSelectChanged,
             orientation: orientation,
             era: widget.era,
             borderRadius: widget.borderRadius,
@@ -288,7 +300,7 @@ class _FlutterRoundedDatePickerDialogState extends State<FlutterRoundedDatePicke
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  // header,
+                  header,
                   if (widget.height == null)
                     Flexible(child: picker)
                   else

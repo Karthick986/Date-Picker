@@ -1,5 +1,5 @@
-import 'package:date_picker_test/utitities/colors_utility.dart';
-import 'package:date_picker_test/utitities/text_utility.dart';
+import 'package:date_picker_test/utilities/colors_utility.dart';
+import 'package:date_picker_test/utilities/text_utility.dart';
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {

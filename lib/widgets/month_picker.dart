@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:date_picker_test/widgets/date_picker_style.dart';
-import 'package:date_picker_test/widgets/date_picker_widget.dart';
 import 'package:date_picker_test/widgets/day_picker.dart';
 import 'package:date_picker_test/widgets/era_mode.dart';
 import 'package:flutter/gestures.dart';
@@ -278,7 +276,7 @@ class _FlutterRoundedMonthPickerState extends State<FlutterRoundedMonthPicker> w
                   return false;
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 12),
+                  margin: const EdgeInsets.only(top: 12),
                   child: PageView.builder(
                     dragStartBehavior: widget.dragStartBehavior,
                     key: ValueKey<DateTime>(widget.selectedDate),

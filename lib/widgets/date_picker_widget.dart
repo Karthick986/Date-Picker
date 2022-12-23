@@ -8,56 +8,57 @@ import 'package:flutter/material.dart';
 
 Future<DateTime?> showRoundedDatePicker(
     {required BuildContext context,
-      double? height,
-      DateTime? initialDate,
-      DateTime? firstDate,
-      DateTime? lastDate,
-      SelectableDayPredicate? selectableDayPredicate,
-      DatePickerMode initialDatePickerMode = DatePickerMode.day,
-      Locale? locale,
-      TextDirection? textDirection,
-      ThemeData? theme,
-      double borderRadius = 16,
-      EraMode era = EraMode.CHRIST_YEAR,
-      ImageProvider? imageHeader,
-      String description = "",
-      String? fontFamily,
-      bool barrierDismissible = false,
-      Color background = Colors.transparent,
-      String? textNegativeButton,
-      String? textPositiveButton,
-      String? textActionButton,
-      VoidCallback? onTapActionButton,
-      MaterialRoundedDatePickerStyle? styleDatePicker,
-      MaterialRoundedYearPickerStyle? styleYearPicker,
-      List<String>? customWeekDays,
-      BuilderDayOfDatePicker? builderDay,
-      List<DateTime>? listDateDisabled,
-      OnTapDay? onTapDay}) async {
+    double? height,
+    DateTime? initialDate,
+    DateTime? firstDate,
+    DateTime? lastDate,
+    SelectableDayPredicate? selectableDayPredicate,
+    DatePickerMode initialDatePickerMode = DatePickerMode.day,
+    Locale? locale,
+    TextDirection? textDirection,
+    ThemeData? theme,
+    double borderRadius = 16,
+    EraMode era = EraMode.CHRIST_YEAR,
+    ImageProvider? imageHeader,
+    String description = "",
+    String? fontFamily,
+    bool barrierDismissible = false,
+    Color background = Colors.transparent,
+    String? textNegativeButton,
+    String? textPositiveButton,
+    String? textActionButton,
+    VoidCallback? onTapActionButton,
+    MaterialRoundedDatePickerStyle? styleDatePicker,
+    MaterialRoundedYearPickerStyle? styleYearPicker,
+    List<String>? customWeekDays,
+    BuilderDayOfDatePicker? builderDay,
+    List<DateTime>? listDateDisabled, bool? with4Presets, bool? with6Presets,
+    OnTapDay? onTapDay}) async {
   initialDate ??= DateTime.now();
-  firstDate ??= DateTime(initialDate.year - 1);
-  lastDate ??= DateTime(initialDate.year + 1);
+  firstDate ??= DateTime(1900);
+  lastDate ??= DateTime(2100);
   theme ??= ThemeData();
 
   assert(
-  !initialDate.isBefore(firstDate),
-  'initialDate must be on or after firstDate',
+    !initialDate.isBefore(firstDate),
+    'initialDate must be on or after firstDate',
   );
   assert(
-  !initialDate.isAfter(lastDate),
-  'initialDate must be on or before lastDate',
+    !initialDate.isAfter(lastDate),
+    'initialDate must be on or before lastDate',
   );
   assert(
-  !firstDate.isAfter(lastDate),
-  'lastDate must be on or after firstDate',
+    !firstDate.isAfter(lastDate),
+    'lastDate must be on or after firstDate',
   );
   assert(
-  selectableDayPredicate == null || selectableDayPredicate(initialDate),
-  'Provided initialDate must satisfy provided selectableDayPredicate',
+    selectableDayPredicate == null || selectableDayPredicate(initialDate),
+    'Provided initialDate must satisfy provided selectableDayPredicate',
   );
   assert(
-  (onTapActionButton != null && textActionButton != null) || onTapActionButton == null,
-  "If you provide onLeftBtn, you must provide leftBtn",
+    (onTapActionButton != null && textActionButton != null) ||
+        onTapActionButton == null,
+    "If you provide onLeftBtn, you must provide leftBtn",
   );
   assert(debugCheckHasMaterialLocalizations(context));
 
@@ -96,6 +97,8 @@ Future<DateTime?> showRoundedDatePicker(
           builderDay: builderDay,
           listDateDisabled: listDateDisabled,
           onTapDay: onTapDay,
+          with4Presets: with4Presets,
+          with6Presets: with6Presets,
         ),
       ),
     ),
