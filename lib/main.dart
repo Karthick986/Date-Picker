@@ -1,3 +1,4 @@
+import 'package:date_picker_test/strings/assets_constant.dart';
 import 'package:date_picker_test/strings/value_strings.dart';
 import 'package:date_picker_test/utilities/colors_utility.dart';
 import 'package:date_picker_test/utilities/global_utility.dart';
@@ -6,6 +7,7 @@ import 'package:date_picker_test/widgets/button_widget.dart';
 import 'package:date_picker_test/widgets/date_picker_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 void main() {
@@ -19,19 +21,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Custom Date Picker',
+      title: ValueStrings.customDatePicker,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: 'Roboto'
       ),
-      home: const MyHomePage(title: 'Date Picker'),
+      home: const MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -53,7 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
       customWeekDays: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
     );
     setState(() {
-      withoutPresetDate = newDateTime;
+      if (newDateTime!=null) {
+        withoutPresetDate = newDateTime;
+      }
     });
   }
 
@@ -69,7 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
       customWeekDays: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
     );
     setState(() {
-      with4PresetDate = newDateTime;
+      if (newDateTime!=null) {
+        with4PresetDate = newDateTime;
+      }
     });
   }
 
@@ -85,7 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
       customWeekDays: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
     );
     setState(() {
-      with6PresetDate = newDateTime;
+      if (newDateTime != null) {
+        with6PresetDate = newDateTime;
+      }
     });
   }
 
@@ -101,167 +108,150 @@ class _MyHomePageState extends State<MyHomePage> {
     double buildHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
         body: Column(
           children: [
             Expanded(
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: Text(
-                          ValueStrings.calenderWidgets,
-                          style: TextStyleUtility.bolTextStyleColor(
-                              16, ColorsUtility.textColor),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          child: Text(
+                            ValueStrings.calenderWidgets,
+                            style: TextStyleUtility.bolTextStyleColor(
+                                21, ColorsUtility.textColor),
+                          ),
+                          margin: EdgeInsets.all(buildWidth * 0.1),
                         ),
-                        margin: EdgeInsets.all(buildWidth * 0.1),
-                      ),
-                      ButtonWidget(
-                        text: ValueStrings.withoutPreset,
-                        onPressed: withoutPreset,
-                        color: ColorsUtility.blueColor,
-                        width: buildWidth,
-                      ),
-                      withoutPresetDate != null
-                          ? Container(
-                              padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(
-                                    Icons.calendar_today_rounded,
-                                    color: Colors.blueAccent,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      DateFormat("dd MMM yyy")
-                                          .format(withoutPresetDate!),
-                                      style: TextStyleUtility.textStyleColor(
-                                          14, ColorsUtility.blueColor),
+                        ButtonWidget(
+                          text: ValueStrings.withoutPreset,
+                          onPressed: withoutPreset,
+                          color: ColorsUtility.blueColor,
+                          width: buildWidth,
+                        ),
+                        withoutPresetDate != null
+                            ? Container(
+                                padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    SvgPicture.asset(AssetsConstant.calendarDisplay),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                      child: Text(
+                                        DateFormat("dd MMM yyy")
+                                            .format(withoutPresetDate!),
+                                        style: TextStyleUtility.textStyleColor(
+                                            14, ColorsUtility.blueColor),
+                                      ),
                                     ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        withoutPresetDate = null;
-                                      });
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colors.blueAccent,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                  color: Colors.blue[50],
-                                  borderRadius: BorderRadius.circular(16)),
-                              margin: const EdgeInsets.all(8),
-                            )
-                          : Container(),
-                      constantHeight(buildHeight),
-                      ButtonWidget(
-                        text: ValueStrings.with4Preset,
-                        onPressed: with4Preset,
-                        color: ColorsUtility.blueColor,
-                        width: buildWidth,
-                      ),
-                      with4PresetDate != null
-                          ? Container(
-                        padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.calendar_today_rounded,
-                              color: Colors.blueAccent,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                DateFormat("dd MMM yyy")
-                                    .format(with4PresetDate!),
-                                style: TextStyleUtility.textStyleColor(
-                                    14, ColorsUtility.blueColor),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  with4PresetDate = null;
-                                });
-                              },
-                              child: const Icon(
-                                Icons.close,
-                                color: Colors.blueAccent,
-                              ),
-                            )
-                          ],
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          withoutPresetDate = null;
+                                        });
+                                      },
+                                      child: SvgPicture.asset(AssetsConstant.close),
+                                    )
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                    color: Colors.blue[50],
+                                    borderRadius: BorderRadius.circular(16)),
+                                margin: const EdgeInsets.all(8),
+                              )
+                            : Container(),
+                        constantHeight(buildHeight),
+                        ButtonWidget(
+                          text: ValueStrings.with4Preset,
+                          onPressed: with4Preset,
+                          color: ColorsUtility.blueColor,
+                          width: buildWidth,
                         ),
-                        decoration: BoxDecoration(
-                            color: Colors.blue[50],
-                            borderRadius: BorderRadius.circular(16)),
-                        margin: const EdgeInsets.all(8),
-                      )
-                          : Container(),
-                      constantHeight(buildHeight),
-                      ButtonWidget(
-                        text: ValueStrings.with6Preset,
-                        onPressed: with6Preset,
-                        color: ColorsUtility.blueColor,
-                        width: buildWidth,
-                      ),
-                      with6PresetDate != null
-                          ? Container(
-                        padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.calendar_today_rounded,
-                              color: Colors.blueAccent,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                DateFormat("dd MMM yyy")
-                                    .format(with6PresetDate!),
-                                style: TextStyleUtility.textStyleColor(
-                                    14, ColorsUtility.blueColor),
+                        with4PresetDate != null
+                            ? Container(
+                          padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(AssetsConstant.calendarDisplay),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                child: Text(
+                                  DateFormat("dd MMM yyy")
+                                      .format(with4PresetDate!),
+                                  style: TextStyleUtility.textStyleColor(
+                                      14, ColorsUtility.blueColor),
+                                ),
                               ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  with6PresetDate = null;
-                                });
-                              },
-                              child: const Icon(
-                                Icons.close,
-                                color: Colors.blueAccent,
-                              ),
-                            )
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    with4PresetDate = null;
+                                  });
+                                },
+                                child: SvgPicture.asset(AssetsConstant.close),
+                              )
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.blue[50],
+                              borderRadius: BorderRadius.circular(16)),
+                          margin: const EdgeInsets.all(8),
+                        )
+                            : Container(),
+                        constantHeight(buildHeight),
+                        ButtonWidget(
+                          text: ValueStrings.with6Preset,
+                          onPressed: with6Preset,
+                          color: ColorsUtility.blueColor,
+                          width: buildWidth,
                         ),
-                        decoration: BoxDecoration(
-                            color: Colors.blue[50],
-                            borderRadius: BorderRadius.circular(16)),
-                        margin: const EdgeInsets.all(8),
-                      )
-                          : Container(),
-                    ],
+                        with6PresetDate != null
+                            ? Container(
+                          padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SvgPicture.asset(AssetsConstant.calendarDisplay),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                                child: Text(
+                                  DateFormat("dd MMM yyy")
+                                      .format(with6PresetDate!),
+                                  style: TextStyleUtility.textStyleColor(
+                                      14, ColorsUtility.blueColor),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    with6PresetDate = null;
+                                  });
+                                },
+                                child: SvgPicture.asset(AssetsConstant.close),
+                              )
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                              color: Colors.blue[50],
+                              borderRadius: BorderRadius.circular(16)),
+                          margin: const EdgeInsets.all(8),
+                        )
+                            : Container(),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
             Container(
-              child: Text("Kartik Gaddam",
+              child: Text(ValueStrings.myName,
                   style: TextStyleUtility.normalTextStyle(16)),
               alignment: Alignment.center,
               margin: const EdgeInsets.all(16),

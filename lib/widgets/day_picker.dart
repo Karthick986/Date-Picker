@@ -1,3 +1,4 @@
+import 'package:date_picker_test/utilities/colors_utility.dart';
 import 'package:date_picker_test/widgets/date_picker_style.dart';
 import 'package:date_picker_test/widgets/era_mode.dart';
 import 'package:flutter/gestures.dart';
@@ -409,7 +410,8 @@ class FlutterRoundedDayPicker extends StatelessWidget {
                   monthYearHeader,
                   style: style?.textStyleMonthYearHeader ??
                       themeData.textTheme.subtitle1!.copyWith(
-                        fontFamily: fontFamily,
+                        fontFamily: fontFamily, fontWeight: FontWeight.w700,
+                        color: ColorsUtility.textColor
                       ),
                 ),
               ),

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:date_picker_test/utilities/colors_utility.dart';
+import 'package:date_picker_test/utilities/global_utility.dart';
 import 'package:date_picker_test/widgets/date_picker_style.dart';
 import 'package:date_picker_test/widgets/day_picker.dart';
 import 'package:date_picker_test/widgets/era_mode.dart';
@@ -294,16 +296,16 @@ class _FlutterRoundedMonthPickerState extends State<FlutterRoundedMonthPicker> w
           /// Arrow Left
           PositionedDirectional(
             top: widget.style?.marginLeftArrowPrevious ?? 0.0,
-            start: widget.style?.marginLeftArrowPrevious ?? 8.0,
+            start: widget.style?.marginLeftArrowPrevious ?? buildWidth(context)*0.2,
             child: Semantics(
               sortKey: _MonthPickerSortKey.previousMonth,
               child: FadeTransition(
                 opacity: _chevronOpacityAnimation,
                 child: IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_left_rounded,
                     size: 32,
-                    color: widget.style?.colorArrowPrevious,
+                    color: ColorsUtility.greyColor,
                   ),
                   tooltip: _isDisplayingFirstMonth
                       ? null
@@ -317,16 +319,16 @@ class _FlutterRoundedMonthPickerState extends State<FlutterRoundedMonthPicker> w
           /// Arrow Right
           PositionedDirectional(
             top: widget.style?.marginTopArrowNext ?? 0.0,
-            end: widget.style?.marginRightArrowNext ?? 8.0,
+            end: widget.style?.marginRightArrowNext ?? buildWidth(context)*0.2,
             child: Semantics(
               sortKey: _MonthPickerSortKey.nextMonth,
               child: FadeTransition(
                 opacity: _chevronOpacityAnimation,
                 child: IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_right_rounded,
                     size: 32,
-                    color: widget.style?.colorArrowNext,
+                    color: ColorsUtility.greyColor,
                   ),
                   tooltip: _isDisplayingLastMonth
                       ? null

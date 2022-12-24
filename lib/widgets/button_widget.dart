@@ -16,11 +16,12 @@ class ButtonWidget extends StatelessWidget {
     return SizedBox(
       width: width,
       child: MaterialButton(
+        height: 50,
         onPressed: () => onPressed(context),
-        child: Text(text, style: TextStyleUtility.textStyleColor(16, ColorsUtility.whiteColor)),
+        child: Text(text, style: TextStyleUtility.textStyleColor(19, ColorsUtility.whiteColor)),
         color: color,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4)
+          borderRadius: BorderRadius.circular(8)
         ),
       ),
     );

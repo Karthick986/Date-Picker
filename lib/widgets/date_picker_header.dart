@@ -1,10 +1,12 @@
+import 'package:date_picker_test/strings/value_strings.dart';
+import 'package:date_picker_test/utilities/colors_utility.dart';
 import 'package:date_picker_test/widgets/date_picker_style.dart';
 import 'package:date_picker_test/widgets/era_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class FlutterRoundedDatePickerHeader extends StatefulWidget {
-  DateTime selectedDate;
+  final DateTime selectedDate;
   final DatePickerMode mode;
   final Function onDateChanged;
   final ValueChanged<DatePickerMode> onModeChanged;
@@ -195,11 +197,11 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                               child: FlatButton(
                             child: const  Text(
-                              'Never ends',
-                              style: TextStyle(color: Colors.blueAccent),
+                              ValueStrings.neverEnds,
+                              style: TextStyle(color: ColorsUtility.blueColor),
                             ),
                             onPressed: () {},
-                            color: Colors.lightBlue[50],
+                            color: ColorsUtility.lightBlueColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4)),
                           )),
@@ -209,12 +211,12 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                '15 days later',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.days15Later,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () => widget.onDateChanged(
                                   DateTime.now().add(const Duration(days: 15))),
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -230,12 +232,12 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                '30 days later',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.days30Later,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () => widget.onDateChanged(
                                   DateTime.now().add(const Duration(days: 30))),
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -244,12 +246,12 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                '60 days later',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.days60Later,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () => widget.onDateChanged(
                                   DateTime.now().add(const Duration(days: 60))),
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -269,12 +271,12 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                               child: FlatButton(
                             child: const Text(
-                              'Yesterday',
-                              style: TextStyle(color: Colors.blueAccent),
+                              ValueStrings.yesterday,
+                              style: TextStyle(color: ColorsUtility.blueColor),
                             ),
                             onPressed: () => widget.onDateChanged(
                                 DateTime.now().subtract(const Duration(days: 1))),
-                            color: Colors.lightBlue[50],
+                            color: ColorsUtility.lightBlueColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(4)),
                           )),
@@ -284,12 +286,12 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                'Today',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.today,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () =>
                                   widget.onDateChanged(DateTime.now()),
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -305,12 +307,12 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                'Tomorrow',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.tomorrow,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () => widget.onDateChanged(
                                   DateTime.now().add(const Duration(days: 1))),
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -319,8 +321,8 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                'This Saturday',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.thisSaturday,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () {
                                 for (int i=0; i<5; i++) {
@@ -330,7 +332,7 @@ class _FlutterRoundedDatePickerHeaderState
                                   }
                                 }
                               },
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -346,8 +348,8 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                'This Sunday',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.thisSunday,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () {
                                 for (int i=0; i<5; i++) {
@@ -357,7 +359,7 @@ class _FlutterRoundedDatePickerHeaderState
                                   }
                                 }
                               },
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),
@@ -366,8 +368,8 @@ class _FlutterRoundedDatePickerHeaderState
                           Expanded(
                             child: FlatButton(
                               child: const Text(
-                                'Next Tuesday',
-                                style: TextStyle(color: Colors.blueAccent),
+                                ValueStrings.nextTuesday,
+                                style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () {
                                 for (int i=1; i<6; i++) {
@@ -377,7 +379,7 @@ class _FlutterRoundedDatePickerHeaderState
                                   }
                                 }
                               },
-                              color: Colors.lightBlue[50],
+                              color: ColorsUtility.lightBlueColor,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
                             ),

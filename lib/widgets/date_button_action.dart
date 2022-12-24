@@ -1,5 +1,9 @@
+import 'package:date_picker_test/utilities/colors_utility.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+
+import '../strings/assets_constant.dart';
 
 class FlutterRoundedButtonAction extends StatelessWidget {
   final String? textButtonNegative;
@@ -42,8 +46,8 @@ class FlutterRoundedButtonAction extends StatelessWidget {
         style: textStyleButtonNegative,
       ),
       onPressed: onTapButtonNegative,
-      color: Colors.lightBlue[50],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      color: ColorsUtility.lightBlueColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
     );
 
     final Widget positiveButton = FlatButton(
@@ -51,8 +55,8 @@ class FlutterRoundedButtonAction extends StatelessWidget {
         textButtonPositive ?? localizations.okButtonLabel,
         style: textStyleButtonPositive,
       ),
-      color: Colors.blueAccent,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      color: ColorsUtility.blueColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       onPressed: onTapButtonPositive,
     );
 
@@ -71,7 +75,10 @@ class FlutterRoundedButtonAction extends StatelessWidget {
   }
 
   List<Widget> _calenderWidget() {
-    return [const Icon(Icons.calendar_today_rounded, color: Colors.blueAccent,), Text(DateFormat("dd MMM yyyy").format(currentDate))];
+    return [Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: SvgPicture.asset(AssetsConstant.calendarPick),
+    ), Text(DateFormat("dd MMM yyyy").format(currentDate))];
   }
 
   @override
