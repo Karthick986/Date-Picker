@@ -96,17 +96,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  constantHeight(double buildHeight) {
+  constantHeight() {
     return SizedBox(
-      height: buildHeight * 0.1,
+      height: buildHeight(context) * 0.05,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    double buildWidth = MediaQuery.of(context).size.width;
-    double buildHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
         body: Column(
           children: [
@@ -126,16 +123,17 @@ class _MyHomePageState extends State<MyHomePage> {
                             style: TextStyleUtility.bolTextStyleColor(
                                 21, ColorsUtility.textColor),
                           ),
-                          margin: EdgeInsets.all(buildWidth * 0.1),
+                          margin: EdgeInsets.all(buildWidth(context) * 0.1),
                         ),
                         ButtonWidget(
                           text: ValueStrings.withoutPreset,
                           onPressed: withoutPreset,
                           color: ColorsUtility.blueColor,
-                          width: buildWidth,
+                          width: buildWidth(context)*0.9,
                         ),
                         withoutPresetDate != null
                             ? Container(
+                          height: buildHeight(context)*0.05,
                                 padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -165,16 +163,17 @@ class _MyHomePageState extends State<MyHomePage> {
                                     borderRadius: BorderRadius.circular(16)),
                                 margin: const EdgeInsets.all(8),
                               )
-                            : Container(),
-                        constantHeight(buildHeight),
+                            : Container(height: buildHeight(context)*0.05),
+                        constantHeight(),
                         ButtonWidget(
                           text: ValueStrings.with4Preset,
                           onPressed: with4Preset,
                           color: ColorsUtility.blueColor,
-                          width: buildWidth,
+                          width: buildWidth(context)*0.9,
                         ),
                         with4PresetDate != null
                             ? Container(
+                          height: buildHeight(context)*0.05,
                           padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -204,16 +203,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.circular(16)),
                           margin: const EdgeInsets.all(8),
                         )
-                            : Container(),
-                        constantHeight(buildHeight),
+                            : Container(height: buildHeight(context)*0.05),
+                        constantHeight(),
                         ButtonWidget(
                           text: ValueStrings.with6Preset,
                           onPressed: with6Preset,
                           color: ColorsUtility.blueColor,
-                          width: buildWidth,
+                          width: buildWidth(context)*0.9,
                         ),
                         with6PresetDate != null
                             ? Container(
+                          height: buildHeight(context)*0.05,
                           padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -243,7 +243,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.circular(16)),
                           margin: const EdgeInsets.all(8),
                         )
-                            : Container(),
+                            : Container(height: buildHeight(context)*0.05),
                       ],
                     ),
                   ),

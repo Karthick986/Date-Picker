@@ -8,10 +8,10 @@ class ValueStrings {
   static const String with6Preset = "With 6 preset";
 
   //With 4 Presets
-  static const String neverEnds = "With 6 preset";
-  static const String days15Later = "With 6 preset";
-  static const String days30Later = "With 6 preset";
-  static const String days60Later = "With 6 preset";
+  static const String neverEnds = "Never ends";
+  static const String days15Later = "15 days later";
+  static const String days30Later = "30 days later";
+  static const String days60Later = "60 days later";
 
   //With 4 Presets
   static const String yesterday = "Yesterday";
