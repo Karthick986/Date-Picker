@@ -85,7 +85,7 @@ class _FlutterRoundedYearPickerState extends State<FlutterRoundedYearPicker> {
   Widget build(BuildContext context) {
     assert(debugCheckHasMaterial(context));
     final ThemeData themeData = Theme.of(context);
-    final TextStyle style = themeData.textTheme.bodyText2!.copyWith(
+    final TextStyle style = themeData.textTheme.bodySmall!.copyWith(
       fontFamily: widget.fontFamily,
     );
     return ListView.builder(
@@ -98,8 +98,8 @@ class _FlutterRoundedYearPickerState extends State<FlutterRoundedYearPicker> {
         final bool isSelected = year == widget.selectedDate.year;
         final TextStyle itemStyle = isSelected
             ? (widget.style?.textStyleYearSelected ??
-            themeData.textTheme.headline5!.copyWith(
-              color: themeData.accentColor,
+            themeData.textTheme.bodySmall!.copyWith(
+              color: themeData.primaryColor,
               fontFamily: widget.fontFamily,
             ))
             : (widget.style?.textStyleYear ?? style);

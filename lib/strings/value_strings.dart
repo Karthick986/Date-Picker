@@ -17,7 +17,7 @@ class ValueStrings {
   static const String yesterday = "Yesterday";
   static const String tomorrow = "Tomorrow";
   static const String today = "Today";
-  static const String thisSaturday = "This Saturday";
+  static const String nextSaturday = "Next Saturday";
+  static const String nextSunday = "Next Sunday";
   static const String thisSunday = "This Sunday";
-  static const String nextTuesday = "Next Tuesday";
 }

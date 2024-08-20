@@ -67,7 +67,7 @@ class _FlutterRoundedDatePickerHeaderState
     final TextTheme headerTextTheme = themeData.primaryTextTheme;
     Color? dayColor;
     Color? yearColor;
-    switch (themeData.primaryColorBrightness) {
+    switch (themeData.brightness) {
       case Brightness.light:
         dayColor =
             widget.mode == DatePickerMode.day ? Colors.black87 : Colors.black54;
@@ -94,10 +94,10 @@ class _FlutterRoundedDatePickerHeaderState
     }
 
     final TextStyle dayStyle = widget.style?.textStyleDayButton ??
-        headerTextTheme.headline4!
+        headerTextTheme.bodySmall!
             .copyWith(color: dayColor, fontFamily: widget.fontFamily);
     final TextStyle yearStyle = widget.style?.textStyleYearButton ??
-        headerTextTheme.subtitle1!
+        headerTextTheme.bodySmall!
             .copyWith(color: yearColor, fontFamily: widget.fontFamily);
 
     Color? backgroundColor;
@@ -106,7 +106,7 @@ class _FlutterRoundedDatePickerHeaderState
     } else {
       switch (themeData.brightness) {
         case Brightness.dark:
-          backgroundColor = themeData.backgroundColor;
+          backgroundColor = themeData.scaffoldBackgroundColor;
           break;
         case Brightness.light:
           backgroundColor = themeData.primaryColor;
@@ -195,7 +195,7 @@ class _FlutterRoundedDatePickerHeaderState
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                              child: FlatButton(
+                              child: MaterialButton(
                             child: const  Text(
                               ValueStrings.neverEnds,
                               style: TextStyle(color: ColorsUtility.blueColor),
@@ -209,7 +209,7 @@ class _FlutterRoundedDatePickerHeaderState
                             width: 16,
                           ),
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
                                 ValueStrings.days15Later,
                                 style: TextStyle(color: ColorsUtility.blueColor),
@@ -230,7 +230,7 @@ class _FlutterRoundedDatePickerHeaderState
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
                                 ValueStrings.days30Later,
                                 style: TextStyle(color: ColorsUtility.blueColor),
@@ -244,7 +244,7 @@ class _FlutterRoundedDatePickerHeaderState
                           ),
                           const SizedBox(width: 16),
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
                                 ValueStrings.days60Later,
                                 style: TextStyle(color: ColorsUtility.blueColor),
@@ -269,7 +269,7 @@ class _FlutterRoundedDatePickerHeaderState
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                              child: FlatButton(
+                              child: MaterialButton(
                             child: const Text(
                               ValueStrings.yesterday,
                               style: TextStyle(color: ColorsUtility.blueColor),
@@ -284,7 +284,7 @@ class _FlutterRoundedDatePickerHeaderState
                             width: 16,
                           ),
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
                                 ValueStrings.today,
                                 style: TextStyle(color: ColorsUtility.blueColor),
@@ -305,7 +305,7 @@ class _FlutterRoundedDatePickerHeaderState
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
                                 ValueStrings.tomorrow,
                                 style: TextStyle(color: ColorsUtility.blueColor),
@@ -319,13 +319,13 @@ class _FlutterRoundedDatePickerHeaderState
                           ),
                           const SizedBox(width: 16),
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
-                                ValueStrings.thisSaturday,
+                                ValueStrings.nextSaturday,
                                 style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () {
-                                for (int i=0; i<5; i++) {
+                                for (int i=1; i<6; i++) {
                                   if (DateFormat.EEEE().format(DateTime.now().add(Duration(days: i))) == "Saturday") {
                                     widget.onDateChanged(DateTime.now().add(Duration(days: i)));
                                     break;
@@ -346,13 +346,13 @@ class _FlutterRoundedDatePickerHeaderState
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
-                                ValueStrings.thisSunday,
+                                ValueStrings.nextSunday,
                                 style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () {
-                                for (int i=0; i<5; i++) {
+                                for (int i=1; i<7; i++) {
                                   if (DateFormat.EEEE().format(DateTime.now().add(Duration(days: i))) == "Sunday") {
                                     widget.onDateChanged(DateTime.now().add(Duration(days: i)));
                                     break;
@@ -366,15 +366,15 @@ class _FlutterRoundedDatePickerHeaderState
                           ),
                           const SizedBox(width: 16),
                           Expanded(
-                            child: FlatButton(
+                            child: MaterialButton(
                               child: const Text(
-                                ValueStrings.nextTuesday,
+                                ValueStrings.thisSunday,
                                 style: TextStyle(color: ColorsUtility.blueColor),
                               ),
                               onPressed: () {
-                                for (int i=1; i<6; i++) {
-                                  if (DateFormat.EEEE().format(DateTime.now().add(Duration(days: i))) == "Tuesday") {
-                                    widget.onDateChanged(DateTime.now().add(Duration(days: i)));
+                                for (int i=0; i<5; i++) {
+                                  if (DateFormat.EEEE().format(DateTime.now().subtract(Duration(days: i))) == "Sunday") {
+                                    widget.onDateChanged(DateTime.now().subtract(Duration(days: i)));
                                     break;
                                   }
                                 }

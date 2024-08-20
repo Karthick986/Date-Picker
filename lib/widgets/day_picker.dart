@@ -272,7 +272,7 @@ class FlutterRoundedDayPicker extends StatelessWidget {
       localizations,
     );
 
-    final List<Widget> labels = _getDayHeaders(style?.textStyleDayHeader ?? themeData.textTheme.caption, localizations);
+    final List<Widget> labels = _getDayHeaders(style?.textStyleDayHeader ?? themeData.textTheme.bodySmall, localizations);
     for (int i = 0; true; i += 1) {
       // 1-based day of month, e.g. 1-31 for January, and 1-29 for February on
       // a leap year.
@@ -295,7 +295,7 @@ class FlutterRoundedDayPicker extends StatelessWidget {
 
         BoxDecoration? decoration;
         TextStyle itemStyle = style?.textStyleDayOnCalendar ??
-            themeData.textTheme.bodyText2!.copyWith(
+            themeData.textTheme.bodySmall!.copyWith(
               fontFamily: fontFamily,
             );
 
@@ -304,25 +304,25 @@ class FlutterRoundedDayPicker extends StatelessWidget {
         if (isSelectedDay) {
           // The selected day gets a circle background highlight, and a contrasting text color.
           itemStyle = style?.textStyleDayOnCalendarSelected ??
-              themeData.accentTextTheme.bodyText1!.copyWith(
+              themeData.primaryTextTheme.bodySmall!.copyWith(
                 fontFamily: fontFamily,
               );
           decoration = style?.decorationDateSelected ??
               BoxDecoration(
-                color: themeData.accentColor,
+                color: ColorsUtility.blueColor,
                 shape: BoxShape.circle,
               );
         } else if (disabled) {
           itemStyle = style?.textStyleDayOnCalendarDisabled ??
-              themeData.textTheme.bodyText2!.copyWith(
+              themeData.textTheme.bodySmall!.copyWith(
                 color: themeData.disabledColor,
                 fontFamily: fontFamily,
               );
         } else if (isCurrentDay) {
           // The current day gets a different text color.
           itemStyle = style?.textStyleCurrentDayOnCalendar ??
-              themeData.textTheme.bodyText1!.copyWith(
-                color: themeData.accentColor,
+              themeData.textTheme.bodySmall!.copyWith(
+                color: themeData.primaryColor,
                 fontFamily: fontFamily,
               );
         }
@@ -409,7 +409,7 @@ class FlutterRoundedDayPicker extends StatelessWidget {
                 child: Text(
                   monthYearHeader,
                   style: style?.textStyleMonthYearHeader ??
-                      themeData.textTheme.subtitle1!.copyWith(
+                      themeData.textTheme.bodySmall!.copyWith(
                         fontFamily: fontFamily, fontWeight: FontWeight.w700,
                         color: ColorsUtility.textColor
                       ),

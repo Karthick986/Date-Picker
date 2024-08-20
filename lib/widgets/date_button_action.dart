@@ -2,7 +2,6 @@ import 'package:date_picker_test/utilities/colors_utility.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-
 import '../strings/assets_constant.dart';
 
 class FlutterRoundedButtonAction extends StatelessWidget {
@@ -40,7 +39,7 @@ class FlutterRoundedButtonAction extends StatelessWidget {
       : super(key: key);
 
   List<Widget> _buildActionsButton() {
-    final Widget negativeButton = FlatButton(
+    final Widget negativeButton = MaterialButton(
       child: Text(
         textButtonNegative ?? localizations.cancelButtonLabel,
         style: textStyleButtonNegative,
@@ -50,7 +49,7 @@ class FlutterRoundedButtonAction extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
     );
 
-    final Widget positiveButton = FlatButton(
+    final Widget positiveButton = MaterialButton(
       child: Text(
         textButtonPositive ?? localizations.okButtonLabel,
         style: textStyleButtonPositive,
@@ -61,24 +60,25 @@ class FlutterRoundedButtonAction extends StatelessWidget {
     );
 
     if (textActionButton != null) {
-      final Widget leftButton = FlatButton(
+      final Widget leftButton = MaterialButton(
         child: Text(textActionButton!, style: textStyleButtonAction),
         onPressed: onTapButtonAction,
       );
       return [
         leftButton,
-        Row(children: <Widget>[negativeButton, positiveButton])
+        Row(children: <Widget>[negativeButton,positiveButton])
       ];
     }
 
-    return [negativeButton, positiveButton];
+    return [Container(child: negativeButton,margin: EdgeInsets.all(4),), Container(child: positiveButton,
+      margin: EdgeInsets.all(4),)];
   }
 
   List<Widget> _calenderWidget() {
     return [Padding(
       padding: const EdgeInsets.only(left: 8.0),
       child: SvgPicture.asset(AssetsConstant.calendarPick),
-    ), Text(DateFormat("dd MMM yyyy").format(currentDate))];
+    ), SizedBox(width: 8,),Text(DateFormat("dd MMM yyyy").format(currentDate))];
   }
 
   @override
@@ -93,11 +93,12 @@ class FlutterRoundedButtonAction extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ButtonBar(
+          Row(
             children: _calenderWidget(),
           ),
-          ButtonBar(
-            alignment: textActionButton != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
+          SizedBox(width: 8,),
+          Row(
+            mainAxisAlignment: textActionButton != null ? MainAxisAlignment.spaceBetween : MainAxisAlignment.end,
             children: _buildActionsButton(),
           ),
         ],
